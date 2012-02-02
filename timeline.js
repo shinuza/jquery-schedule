@@ -43,10 +43,12 @@
 
             this.setOptions(options);
 
+            var element;
+            // jQuery's each sucks
             for(var i = 0, l = this.elements.length; i < l; i++) {
-                var element = this.elements[i];
+                element = this.elements[i];
                 if(element != undefined) {
-                    this.positionElement(element);
+                    this._positionElement(element);
                 }
             }
 
@@ -59,8 +61,8 @@
             this.base.addClass(TIMELINE + this.options.scale);
             this.base.width((this.options.end - this.options.start) * 60 * this.options.scale);
 
-            // Go for it
-            for(var i = 0; i < this.options.end - this.options.start; i++) {
+            var i = 0;
+            for(; i < this.options.end - this.options.start; i++) {
                 this.drawMark(i);
                 this.drawLabel(i);
             }
@@ -75,39 +77,26 @@
             this.interval = setInterval(function() {
                 var currentDate = new Date();
                 if(self.lastUpdate.getMinutes() != currentDate.getMinutes()) {
-                    self.positionElement(self.cursor);
                     self.lastUpdate = currentDate;
-                    self.onTick();
+                    self.cursor.data('date', self.lastUpdate);
+                    self._positionElement(self.cursor);
+                    self.onTick(self.lastUpdate);
                 }
                 
-            }, 1000);
+            }, 500);
         },
 
         addElement: function(element, date, top) {
             element.data('date', date).data('top', top);
-            this.positionElement(element);
+            this._positionElement(element);
             this.elements.push(element);
             this.base.append(element);
         },
 
-        positionElement: function(element) {
-            element.css({
-                'left': this._dateAsMinutes(element.data('date')),
-                'top': element.data('top')
-            });
-        },
-
         removeElement: function(element) {
             var index = this.elements.indexOf(element);
-            if(~index) {
-                // This leaves a hole in the array, it's on purpose
-                delete this.elements[index];
-            }
+            if(~index) delete this.elements[index];
             element.remove();
-        },
-
-        clearElements: function(CLS) {
-            this.base.find('.' + CLS).remove();  
         },
 
         drawMark: function(num) {
@@ -118,23 +107,27 @@
         },
 
         clearMarks: function() {
-            this.clearElements(MARK);
+            this._clearElements(MARK);
         },
 
         drawLabel: function(num) {
             var label = this._createElement(LABEL, num + this.options.start);
-            this.base.append(label); // Appending prior to setting the position in order to have a width
+            this.base.append(label);
             label.css('left', (num * 60 * this.options.scale) - label.width() / 2 );
         },
 
         clearLabels: function() {
-            this.clearElements(LABEL);
+            this._clearElements(LABEL);
         },
 
         drawCursor: function() {
             this.cursor = $('<div class="cursor"></div>');
             this.cursor.height(this.base.height());
             this.addElement(this.cursor, this.date, null);
+        },
+
+        _clearElements: function(cls) {
+            this.base.find('.' + cls).remove();
         },
 
         _dateAsMinutes: function(date) {
@@ -146,6 +139,13 @@
         _createElement: function(className, html) {
             return $('<div class="' + className + '">' + html + '</div>');
         },
+
+        _positionElement: function(element) {
+            element.css({
+                'left': this._dateAsMinutes(element.data('date')),
+                'top': element.data('top')
+            });
+        }
 
     };
 
