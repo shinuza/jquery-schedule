@@ -2,17 +2,17 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Timeline</title>
+        <title>jQuery Schedule</title>
         <style>
-            #timeline { position:relative; margin-left: 50px; }
+            #schedule { position:relative; margin-left: 50px; }
             .cursor, .mark { width: 2px; position: absolute; top:30px;}
             .cursor { border-right: 1px dashed black; z-index:10; }
             .mark { border-right: 1px solid #ddd; z-index:9; }
             .label { font-weight:bold; width:20px; position: absolute; text-align:center;}
 
             .course { position: absolute; border-radius:3px; background-color: #DDD; }
-            .timeline-scale-1 .course { width: 50px; height: 20px; }
-            .timeline-scale-2 .course { width: 100px; height: 40px; }
+            .schedule-scale-1 .course { width: 50px; height: 20px; }
+            .schedule-scale-2 .course { width: 100px; height: 40px; }
 
             #scaler { border:1px solid; background:#fff; padding:4px; position: fixed; bottom:10px; right: 10px; z-index:100; }
         </style>
@@ -22,12 +22,12 @@
             Scale: <input type="text" id="scale">
                    <input type="button" id="ok" value="OK">
         </div>
-        <div id="timeline" style="height:400px"></div>
+        <div id="schedule" style="height:400px"></div>
         <script src="jquery-1.7.1.js"></script>
-        <script src="timeline.js"></script>
+        <script src="../lib/schedule.js"></script>
         <script>
-            var t = $('#timeline').timeline({
-                'scale': 4,
+            var t = $('#schedule').schedule({
+                'scale': 2,
                 'onDraw': function(options) {
                     $('#scale').val(options.scale);
                 }
@@ -35,17 +35,19 @@
 
             t.tick();
 
-            function add(hours, minutes, top) {
+            function add(time, top) {
                 var el = $("<div class='course'></div>");
+
                 var x = new Date();
-                x.setHours(hours);
-                x.setMinutes(minutes);
+                x.setHours(time[0]);
+                x.setMinutes(time[1]);
+
                 t.addElement(el, x, top);
             }
 
-            add(12, 33, 50);
-            add(15, 19, 100);
-            add(4, 51, 150);
+            add([12, 33], 50);
+            add([15, 19], 100);
+            add([4, 51], 150);
 
             $('#ok').on('click', function() {
                 t.refresh({scale: $('#scale').val() || 1});
