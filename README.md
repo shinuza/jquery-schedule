@@ -13,6 +13,8 @@ start - int - Hour marker to start from, defaults to 0
 
 end - int - Hour to end to, defaults to 24 (non-inclusive)
 
+boundaries - string - `start`, `end` or `both`. Which boundary to display.
+
 ## Methods
 
 tick() - Start to track the time, the cursor is automatically updated every minutes

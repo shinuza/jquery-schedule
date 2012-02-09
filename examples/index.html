@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <title>jQuery Schedule</title>
         <style>
-            #schedule { position:relative; margin-left: 50px; }
+            #schedule { position:relative; margin: 0 50px; }
             .cursor, .mark { width: 2px; position: absolute; top:30px;}
             .cursor { border-right: 1px dashed black; z-index:10; }
             .mark { border-right: 1px solid #ddd; z-index:9; }
@@ -28,6 +28,7 @@
         <script>
             var t = $('#schedule').schedule({
                 'scale': 2,
+                'boundaries': 'end',
                 'onDraw': function(options) {
                     $('#scale').val(options.scale);
                 }
