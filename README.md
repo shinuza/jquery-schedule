@@ -23,6 +23,10 @@ refresh(options) - Redraws the schedule with the new given options
 
 reDraw - Alias to refresh()
 
+getStart - Returns the start
+
+getEnd - Returns the end
+
 ## Events
 
 onTick(Date) - fired when the cursor is updated
