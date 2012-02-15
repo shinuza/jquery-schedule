@@ -13,7 +13,7 @@ start - int - Hour marker to start from, defaults to 0
 
 end - int - Hour to end to, defaults to 24 (non-inclusive)
 
-boundaries - string - `start`, `end` or `both`. Which boundary to display.
+boundary - string - `start`, `end` or `both`. Which boundary to display.
 
 ## Methods
 
@@ -32,3 +32,5 @@ getEnd - Returns the end
 onTick(Date) - fired when the cursor is updated
 
 onDraw(options) - fired when the schedule is drawn
+
+onLabel(num) - fired when drawing a label, you can modify the label there

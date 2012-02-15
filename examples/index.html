@@ -31,6 +31,9 @@
                 'boundaries': 'end',
                 'onDraw': function(options) {
                     $('#scale').val(options.scale);
+                },
+                'onLabel': function(num) {
+                    return num + 'h'
                 }
             });
 
