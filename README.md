@@ -27,6 +27,12 @@ getStart - Returns the start
 
 getEnd - Returns the end
 
+addElement(element, date, top) - Add an element to the timeline, X is defined using a date, top is in pixels
+
+removeElement(element) - Prefered way to remove an element from the timeline.
+
+clear() - Clears the timeline
+
 ## Events
 
 onTick(Date) - fired when the cursor is updated
