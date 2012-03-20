@@ -55,7 +55,9 @@ Clears the timeline
 
 Scrolls `scrolling` (defaults to `myelement`) to `element`'s position.
 `element` can also be `'cursor'`, if you want to scroll to the current cursor's position.
-Use `offset` to correct the scroll, defaults to 0.
+Use `offset` to correct the scroll, defaults to 0. 
+
+Won't work on element not added using #addElement
 
 ## Events
 
