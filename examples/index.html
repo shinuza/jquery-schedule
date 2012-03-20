@@ -49,10 +49,11 @@
                 },
                 'onLabel': function(num) {
                     return num + 'h'
-                }
+                },
+                'tick': true
             });
 
-            t.tick().focusOn('cursor', document.body, -200);
+            t.focusOn('cursor', document.body, -200);
 
             add([12, 33], 50);
             add([15, 19], 100);
