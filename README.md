@@ -17,35 +17,35 @@ boundary - string - `start`, `end` or `both`. Which boundary to display.
 
 ## Methods
 
-*tick()*
+**tick()**
 
 Start to track the time, the cursor is automatically updated every minutes
 
-*refresh(options)*
+**refresh(options)**
 
 Redraws the schedule with the new given options
 
-*getStart()*
+**getStart()**
 
 Returns the start
 
-*getEnd()*
+**getEnd()*
 
 Returns the end
 
-*addElement(element, date[, top])*
+**addElement(element, date[, top])**
 
 Add an `element` to the timeline, X is defined using `date`, `top` is in pixels (optional)
 
-*removeElement(element)*
+**removeElement(element)**
 
 Prefered way to remove an element from the timeline.
 
-*clear()*
+**clear()**
 
 Clears the timeline
 
-*focusOn(element[, scrolling[, offset]])*
+**focusOn(element[, scrolling[, offset]])**
 
 Scrolls `scrolling` (defaults to `myelement`) to `element`'s position.
 `element` can also be `'cursor'`, if you want to scroll to the current cursor's position.
