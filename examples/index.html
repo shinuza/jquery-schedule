@@ -28,12 +28,11 @@
         <script>
             function add(time, top) {
                 var el = $("<div class='course'></div>");
-
                 var x = new Date();
                 x.setHours(time[0]);
                 x.setMinutes(time[1]);
-
                 t.addElement(el, x, top);
+                return el;
             }
 
             $('#ok').on('click', function() {
@@ -44,20 +43,20 @@
             var t = $('#schedule').schedule({
                 'scale': 2,
                 'boundaries': 'end',
+                'tick': true,
                 'onDraw': function(options) {
                     $('#scale').val(options.scale);
                 },
                 'onLabel': function(num) {
                     return num + 'h'
-                },
-                'tick': true
+                }
             });
 
-            t.focusOn('cursor', document.body, -200);
+            var a = add([12, 33], 50);
+            var b = add([15, 19], 100);
+            var c = add([4, 51], 150);
 
-            add([12, 33], 50);
-            add([15, 19], 100);
-            add([4, 51], 150);
+            t.focusOn(b, document.body, -50);
         </script>
     </body>
 </html>
