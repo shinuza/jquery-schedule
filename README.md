@@ -29,7 +29,7 @@ Redraws the schedule with the new given options
 
 Returns the start
 
-**getEnd()*
+**getEnd()**
 
 Returns the end
 
