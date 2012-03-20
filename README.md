@@ -15,11 +15,17 @@ end - int - Hour to end to, defaults to 24 (non-inclusive)
 
 boundary - string - `start`, `end` or `both`. Which boundary to display.
 
+tick - bool - `true` or `false`. Start ticking upon initialization.
+
 ## Methods
 
 **tick()**
 
 Start to track the time, the cursor is automatically updated every minutes
+
+**untick()**
+
+Stop to track the time
 
 **refresh(options)**
 
