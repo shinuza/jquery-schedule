@@ -3,7 +3,7 @@ jQuery Schedule
 
 ## Usage
 
-$(myelement).schedule(options);
+$(`myelement`).schedule(options);
 
 ## Options
 
@@ -17,21 +17,39 @@ boundary - string - `start`, `end` or `both`. Which boundary to display.
 
 ## Methods
 
-tick() - Start to track the time, the cursor is automatically updated every minutes
+*tick()*
 
-refresh(options) - Redraws the schedule with the new given options
+Start to track the time, the cursor is automatically updated every minutes
 
-reDraw - Alias to refresh()
+*refresh(options)*
 
-getStart - Returns the start
+Redraws the schedule with the new given options
 
-getEnd - Returns the end
+*getStart()*
 
-addElement(element, date, top) - Add an element to the timeline, X is defined using a date, top is in pixels
+Returns the start
 
-removeElement(element) - Prefered way to remove an element from the timeline.
+*getEnd()*
 
-clear() - Clears the timeline
+Returns the end
+
+*addElement(element, date[, top])*
+
+Add an `element` to the timeline, X is defined using `date`, `top` is in pixels (optional)
+
+*removeElement(element)*
+
+Prefered way to remove an element from the timeline.
+
+*clear()*
+
+Clears the timeline
+
+*focusOn(element[, scrolling[, offset]])*
+
+Scrolls `scrolling` (defaults to `myelement`) to `element`'s position.
+`element` can also be `'cursor'`, if you want to scroll to the current cursor's position.
+Use `offset` to correct the scroll, defaults to 0.
 
 ## Events
 
